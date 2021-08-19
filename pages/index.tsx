@@ -37,7 +37,7 @@ const Home = ()=>{
     if(promise.status==201){
       const { id,link } = await promise.json();
       const result = {
-        shortLink: removeProtocol(`${window.location}${id}`),
+        shortLink: `${window.location}${id}`,
         longLink: link
       }
       setShortLinks(prev=>[...prev,result]);
