@@ -31,18 +31,4 @@ export const getServerSideProps:GetServerSideProps = async({params})=>{
       permanent: false,
     }
   }
-
-  
-  /* if(result){
-    incrementVisitedCount(id,result.visitedCount);
-    console.log(`1 usuário redirecionado com sucesso para ${result.link}`)
-    return{
-      redirect:{
-        destination: `https://${result.link}`,
-        permanent: false
-      }
-    }
-  } */
-
-  
 }

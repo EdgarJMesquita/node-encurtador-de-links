@@ -18,7 +18,6 @@ async function insertNewLink(newListing:NewLinkType){
   const connection = await new MongoClient(MONGODB_URI).connect();
   const result = await connection.db(DATABASE_NAME).collection('links').insertOne(newListing);
   connection.close();
-  console.log(`1 documento inserido com id: ${newListing.id}`)
   return result;
 }
 
