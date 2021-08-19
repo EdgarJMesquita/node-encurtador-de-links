@@ -97,7 +97,7 @@ const Home = ()=>{
               <li className="list-group-item" key={item.shortLink}>
                 <div className="d-flex justify-content-center align-items-center p-2 flex-column flex-sm-row">
                   <span>Link:</span>
-                  <a href={item.shortLink} target="_blank">{item.shortLink}</a>
+                  <a href={item.shortLink} target="_blank" rel="noreferrer">{item.shortLink}</a>
                   <span className="mx-1 d-inline-block text-truncate" style={{maxWidth:'12rem'}}>{item.longLink}</span>
                   <button 
                     onClick={async()=>await navigator.clipboard.writeText(item.shortLink)} 
