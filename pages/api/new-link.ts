@@ -4,7 +4,7 @@ import { VercelRequest, VercelResponse, VercelRequestBody } from '@vercel/node';
 
 
 // end point para criação de um novo link curto no banco de dados.
-export default async(req:VercelRequest, res:VercelResponse)=>{
+export default async function handler (req:VercelRequest, res:VercelResponse){
 
   const { link }:VercelRequestBody = req.body;
   
