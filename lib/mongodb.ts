@@ -9,7 +9,6 @@ async function findLinkById(id:string|string[]){
   const connection = await new MongoClient(MONGODB_URI).connect();
   const result = await connection.db(DATABASE_NAME).collection('links').findOne({id:id});
   connection.close();
-  console.log(`1 documento encontrado com id: ${id}`);
   return result
 }
 
@@ -22,22 +21,27 @@ async function insertNewLink(newListing:NewLinkType){
 }
 
 
-async function incrementVisitedCount(id:string|string[], count:number) {
+async function incrementVisitedLinkCount(id:string|string[], count:number) {
   const connection = await new MongoClient(MONGODB_URI).connect();
   const result = await connection.db(DATABASE_NAME).collection('links').updateOne({id:id},{$set:{visitedCount:count+1}});
   connection.close();
-  if(result){
-    console.log(`1 documento com id: ${id} foi atualizado visitedCount: ${count+1}`);
-  }
+  return result;
 }
 
 async function deleteAllLinksOlderThanOneWeek() {
   const oneWeekAsMilliseconds = 604800000;
   const oneWeekAgoAsMilliseconds = Date.now() - oneWeekAsMilliseconds;
-
   const connection = await new MongoClient(MONGODB_URI).connect();
   const result = await connection.db(DATABASE_NAME).collection('links').deleteMany({visitedCount:{ $lt:{ oneWeekAgoAsMilliseconds }}});
+  connection.close()
   console.log(`${result.deletedCount} documents deleted older than one week.`);
 }
 
-export { findLinkById, insertNewLink, incrementVisitedCount, deleteAllLinksOlderThanOneWeek }
+async function addToVisiteCount() {
+  const connection = await new MongoClient(MONGODB_URI).connect();
+  const {count} = await connection.db(DATABASE_NAME).collection('visitas').findOne({id:'visitas'});
+  connection.db('encurtador').collection('visitas').updateOne({id:'visitas'},{$set:{count:count+1}});
+  connection.close();
+}
+
+export { findLinkById, insertNewLink, incrementVisitedLinkCount, deleteAllLinksOlderThanOneWeek, addToVisiteCount }

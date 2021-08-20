@@ -13,7 +13,7 @@ export function LinksList({shortLinks}:LinksListProps){
       return(
         <li className="list-group-item" key={item.shortLink}>
           <div className="p-1">
-            <div className="d-flex">
+            <div className="d-flex mb-1">
               <span className="me-1">Link:</span>
               <a href={item.shortLink} target="_blank" rel="noreferrer">{item.shortLink.replace('https://','')}</a>
               <button 
@@ -22,9 +22,9 @@ export function LinksList({shortLinks}:LinksListProps){
                 Copy
               </button>
             </div>
-            <div>
+            <div className="d-flex">
               <span className="me-1">Para:</span>
-              <a href={item.longLink}>{item.longLink}</a>
+              <a href={item.longLink} className="mx-1 d-inline-block text-truncate" style={{maxWidth:'30rem'}}>{item.longLink}</a>
             </div>
             {/* <span className="mx-1 d-inline-block text-truncate" style={{maxWidth:'12rem'}}>{item.longLink}</span> */}
           </div>

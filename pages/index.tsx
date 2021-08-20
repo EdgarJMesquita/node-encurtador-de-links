@@ -80,11 +80,10 @@ const Home = ()=>{
 export default Home;
 
 export const getStaticProps:GetStaticProps=()=>{
-  deleteAllLinksOlderThanOneWeek();
+  //deleteAllLinksOlderThanOneWeek();
   return{
     props:{
 
     }
   }
-
 }
